@@ -5,8 +5,14 @@
 #removes root ssh
 
 # Ensure script is run as root
-if [["${UID}" -ne 0]]; then
+if [ "$EUID" -ne 0 ]; then
 	echo "Script must be run as root."
+	exit 1
+fi
+
+# Ensure new user name supplied
+if [ $# -lt 1 ]; then
+	echo "Must provide at least 1 argument"
 	exit 1
 fi
 
@@ -19,7 +25,7 @@ useradd -m -d /home/$USER -s /bin/bash $USER
 mkdir /home/$USER/.ssh
 
 # Get public key
-curl https://github.com/wswearingin/sys-265/linux/public-keys/id_rsa.pub >> authorized_keys
+curl https://github.com/wswearingin/sys-265/linux/public-keys/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
 
 # Set permissions
 chmod 700 /home/$USER/.ssh
