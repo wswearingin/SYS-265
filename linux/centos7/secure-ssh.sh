@@ -20,16 +20,16 @@ fi
 sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 no/' /etc/ssh/sshd_config
 
 # Create new user and directories
-USER = "$1"
-useradd -m -d /home/$USER -s /bin/bash $USER
-mkdir /home/$USER/.ssh
+NUSER = "$1"
+useradd -m -d /home/$NUSER -s /bin/bash $NUSER
+mkdir /home/$NUSER/.ssh
 
 # Get public key
-curl https://github.com/wswearingin/sys-265/linux/public-keys/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
+curl https://github.com/wswearingin/sys-265/linux/public-keys/id_rsa.pub >> /home/$NUSER/.ssh/authorized_keys
 
 # Set permissions
-chmod 700 /home/$USER/.ssh
-chmod 600 /home/$USER/.ssh/authorized_keys
-chown -R $USER:$USER /home/$USER/.ssh
+chmod 700 /home/$NUSER/.ssh
+chmod 600 /home/$NUSER/.ssh/authorized_keys
+chown -R $NUSER:$NUSER /home/$NUSER/.ssh
 
 
