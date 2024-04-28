@@ -25,7 +25,7 @@ useradd -m -d /home/$NUSER -s /bin/bash $NUSER
 mkdir /home/$NUSER/.ssh
 
 # Get public key
-curl https://github.com/wswearingin/sys-265/blob/main/linux/public-keys/id_rsa.pub >> /home/$NUSER/.ssh/authorized_keys
+curl https://raw.githubusercontent.com/wswearingin/sys-265/main/linux/public-keys/id_rsa.pub >> /home/$NUSER/.ssh/authorized_keys
 
 # Set permissions
 chmod 700 /home/$NUSER/.ssh
