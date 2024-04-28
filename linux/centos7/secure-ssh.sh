@@ -20,7 +20,7 @@ fi
 sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 no/' /etc/ssh/sshd_config
 
 # Create new user and directories
-USER = $1
+USER = "$1"
 useradd -m -d /home/$USER -s /bin/bash $USER
 mkdir /home/$USER/.ssh
 
